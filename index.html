@@ -1,616 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rose Room Productions Inc.</title>
-  <meta name="description" content="Luxury visual identity, image prompt direction, branding concepts, and cinematic creative presentation for Rose Room Productions Inc." />
-  <style>
-    :root {
-      --bg: #0b0a0d;
-      --panel: rgba(255,255,255,0.05);
-      --panel-strong: rgba(255,255,255,0.08);
-      --text: #f5f1f2;
-      --muted: #c6bcc0;
-      --line: rgba(255,255,255,0.12);
-      --gold: #c8a96b;
-      --rose: #7a1f38;
-      --rose-soft: #a33b5b;
-      --shadow: 0 18px 40px rgba(0,0,0,0.35);
-      --radius: 24px;
-      --max: 1180px;
-    }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rose Room Productions Inc. | Visual Portfolio</title>
+  <style>
+    :root {
+      --bg: #0b0a0d;
+      --panel: rgba(255,255,255,0.05);
+      --text: #f5f1f2;
+      --muted: #c6bcc0;
+      --line: rgba(255,255,255,0.12);
+      --gold: #c8a96b;
+      --rose: #7a1f38;
+      --radius: 24px;
+      --max: 1180px;
+    }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at top right, rgba(163,59,91,0.18), transparent 28%),
-        radial-gradient(circle at left center, rgba(200,169,107,0.10), transparent 24%),
-        linear-gradient(180deg, #120d12 0%, #0b0a0d 38%, #0b0a0d 100%);
-      color: var(--text);
-      line-height: 1.6;
-    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #0b0a0d;
+      color: var(--text);
+      line-height: 1.6;
+    }
 
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
+    .container { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
 
-    .container { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+    /* Navigation */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      backdrop-filter: blur(14px);
+      background: rgba(11,10,13,0.8);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner { display: flex; justify-content: space-between; align-items: center; min-height: 80px; }
+    .brand { font-weight: 700; letter-spacing: 2px; display: flex; align-items: center; gap: 10px; text-transform: uppercase; }
 
-    .nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      backdrop-filter: blur(14px);
-      background: rgba(11,10,13,0.72);
-      border-bottom: 1px solid var(--line);
-    }
+    /* Hero Section */
+    .hero { padding: 100px 0 60px; text-align: center; }
+    h1 { font-family: Georgia, serif; font-size: clamp(2.5rem, 6vw, 4.5rem); margin-bottom: 20px; color: var(--text); }
+    .lead { color: var(--muted); max-width: 700px; margin: 0 auto 40px; font-size: 1.1rem; }
 
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      min-height: 78px;
-    }
+    /* Portfolio Gallery - ZED TSAWER MEN 3NDEK */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 25px;
+      margin-top: 50px;
+    }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-    }
+    .gallery-item {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      aspect-ratio: 16/10;
+      transition: transform 0.4s ease, border-color 0.4s ease;
+    }
 
-    .brand-mark {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, var(--rose-soft), var(--rose));
-      border: 1px solid rgba(255,255,255,0.15);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.15), 0 8px 20px rgba(122,31,56,0.35);
-      font-size: 18px;
-    }
+    .gallery-item:hover {
+      transform: translateY(-10px);
+      border-color: var(--gold);
+    }
 
-    .nav-links {
-      display: flex;
-      gap: 24px;
-      flex-wrap: wrap;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(20%) brightness(80%);
+      transition: filter 0.5s ease, transform 0.5s ease;
+    }
 
-    .nav-links a:hover { color: var(--text); }
+    .gallery-item:hover img {
+      filter: grayscale(0%) brightness(100%);
+      transform: scale(1.05);
+    }
 
-    .hero {
-      padding: 84px 0 44px;
-    }
+    .overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 25px;
+      background: linear-gradient(transparent, rgba(0,0,0,0.9));
+    }
 
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 28px;
-      align-items: stretch;
-    }
+    .overlay span {
+      color: var(--gold);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
 
-    .card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-    }
+    .overlay h3 { margin: 5px 0 0; font-family: Georgia, serif; font-size: 1.3rem; color: var(--text); }
 
-    .hero-copy {
-      padding: 44px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-copy::after {
-      content: "";
-      position: absolute;
-      inset: auto -60px -60px auto;
-      width: 220px;
-      height: 220px;
-      background: radial-gradient(circle, rgba(200,169,107,0.14), transparent 65%);
-      pointer-events: none;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(200,169,107,0.28);
-      color: #ead8b3;
-      background: rgba(200,169,107,0.08);
-      font-size: 0.84rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    h1, h2, h3 { margin: 0; line-height: 1.08; }
-
-    h1 {
-      margin-top: 22px;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(2.6rem, 5vw, 5rem);
-      letter-spacing: -0.03em;
-    }
-
-    .lead {
-      margin: 22px 0 28px;
-      max-width: 62ch;
-      color: var(--muted);
-      font-size: 1.04rem;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-bottom: 28px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 50px;
-      padding: 0 20px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      transition: 0.22s ease;
-      font-weight: 600;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--gold), #e5c98e);
-      color: #16110d;
-      box-shadow: 0 12px 24px rgba(200,169,107,0.22);
-    }
-
-    .btn-primary:hover { transform: translateY(-1px); }
-
-    .btn-secondary {
-      border-color: var(--line);
-      color: var(--text);
-      background: rgba(255,255,255,0.03);
-    }
-
-    .meta-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-    }
-
-    .meta-item {
-      padding: 14px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .meta-item small { display: block; color: var(--muted); margin-bottom: 4px; }
-    .meta-item strong { font-size: 1.02rem; }
-
-    .hero-visual {
-      padding: 24px;
-      display: grid;
-      gap: 16px;
-      min-height: 100%;
-    }
-
-    .visual-block {
-      border-radius: 22px;
-      padding: 24px;
-      border: 1px solid rgba(255,255,255,0.09);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03)),
-        radial-gradient(circle at top right, rgba(200,169,107,0.14), transparent 28%),
-        radial-gradient(circle at left bottom, rgba(163,59,91,0.16), transparent 30%);
-      min-height: 190px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .logo-preview {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .logo-preview .symbol {
-      width: 72px;
-      height: 72px;
-      border-radius: 20px;
-      display: grid;
-      place-items: center;
-      font-size: 34px;
-      background: linear-gradient(135deg, rgba(163,59,91,0.95), rgba(122,31,56,0.95));
-      border: 1px solid rgba(255,255,255,0.15);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.12);
-    }
-
-    .logo-text {
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 1.4rem;
-      letter-spacing: 0.05em;
-    }
-
-    section { padding: 26px 0; }
-
-    .section-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 18px;
-      margin-bottom: 20px;
-    }
-
-    .section-head p { color: var(--muted); max-width: 62ch; margin: 8px 0 0; }
-
-    h2 {
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(1.9rem, 3vw, 3rem);
-      letter-spacing: -0.02em;
-    }
-
-    .services {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .service {
-      padding: 24px;
-    }
-
-    .service h3 { margin-bottom: 10px; font-size: 1.2rem; }
-    .service p { color: var(--muted); margin: 0; }
-
-    .prompts-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-    }
-
-    .prompt-card {
-      padding: 24px;
-    }
-
-    .prompt-card h3 {
-      margin-bottom: 10px;
-      font-size: 1.12rem;
-    }
-
-    .tag {
-      display: inline-block;
-      padding: 6px 10px;
-      border-radius: 999px;
-      font-size: 0.75rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: #ead8b3;
-      background: rgba(200,169,107,0.09);
-      border: 1px solid rgba(200,169,107,0.18);
-      margin-bottom: 14px;
-    }
-
-    pre {
-      margin: 0;
-      white-space: pre-wrap;
-      word-break: break-word;
-      font-family: "SFMono-Regular", Consolas, Monaco, monospace;
-      font-size: 0.92rem;
-      color: #f7e9eb;
-      background: rgba(0,0,0,0.22);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 18px;
-      padding: 18px;
-      overflow: auto;
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap: 18px;
-    }
-
-    .contact-card, .info-card {
-      padding: 28px;
-    }
-
-    .info-list {
-      display: grid;
-      gap: 16px;
-      margin-top: 14px;
-    }
-
-    .info-row {
-      padding: 16px 18px;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.04);
-    }
-
-    .info-row small { display: block; color: var(--muted); margin-bottom: 4px; }
-
-    form {
-      display: grid;
-      gap: 14px;
-      margin-top: 18px;
-    }
-
-    input, textarea {
-      width: 100%;
-      border: 1px solid rgba(255,255,255,0.1);
-      background: rgba(255,255,255,0.04);
-      color: var(--text);
-      border-radius: 16px;
-      padding: 15px 16px;
-      font: inherit;
-      outline: none;
-    }
-
-    textarea { min-height: 140px; resize: vertical; }
-    input::placeholder, textarea::placeholder { color: #a9989d; }
-
-    footer {
-      padding: 32px 0 48px;
-      color: var(--muted);
-    }
-
-    .footer-box {
-      padding: 22px 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    @media (max-width: 1024px) {
-      .hero-grid,
-      .contact-grid,
-      .services,
-      .prompts-grid { grid-template-columns: 1fr; }
-    }
-
-    @media (max-width: 720px) {
-      .nav-inner { padding: 12px 0; align-items: flex-start; }
-      .nav-links { gap: 14px; font-size: 0.92rem; }
-      .hero-copy, .hero-visual, .prompt-card, .service, .contact-card, .info-card { padding: 22px; }
-      .meta-grid { grid-template-columns: 1fr; }
-      h1 { font-size: 2.3rem; }
-    }
-  </style>
+    /* Footer */
+    footer { padding: 60px 0; border-top: 1px solid var(--line); margin-top: 80px; text-align: center; }
+    
+    @media (max-width: 768px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
-  <header class="nav">
-    <div class="container nav-inner">
-      <a href="#top" class="brand" aria-label="Rose Room Productions Inc.">
-        <span class="brand-mark">🌹</span>
-        <span>ROSE ROOM PRODUCTIONS INC.</span>
-      </a>
-      <nav class="nav-links">
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#prompts">Image Prompts</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
 
-  <main id="top">
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="card hero-copy">
-          <span class="eyebrow">Luxury Visual Direction • Brand Presence • Cinematic Identity</span>
-          <h1>Elevating cinematic image branding with a refined, luxury aesthetic.</h1>
-          <p class="lead">
-            ROSE ROOM PRODUCTIONS INC. presents a premium visual experience inspired by the motion picture and video industry. This concept website highlights elegant branding, still-image creative direction, and polished cinematic prompt language for luxury image generation.
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#prompts">Explore Image Prompts</a>
-            <a class="btn btn-secondary" href="#contact">Contact Company</a>
-          </div>
-          <div class="meta-grid">
-            <div class="meta-item">
-              <small>Industry Focus</small>
-              <strong>Motion Picture & Video</strong>
-            </div>
-            <div class="meta-item">
-              <small>Style Direction</small>
-              <strong>Luxury • Cinematic • Professional</strong>
-            </div>
-            <div class="meta-item">
-              <small>Creative Output</small>
-              <strong>Images, Logo & Branding</strong>
-            </div>
-          </div>
-        </div>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand">🌹 ROSE ROOM PRODUCTIONS INC.</div>
+      <div style="display:flex; gap:20px; color:var(--muted); font-size:0.9rem;">
+        <span>About</span>
+        <span>Work</span>
+        <span>Studio</span>
+      </div>
+      <div style="display:flex; gap:10px;">
+        <div style="width: 24px; height: 24px; border-radius: 50%; background: #0b0a0d; border: 1px solid rgba(255,255,255,0.12);"></div>
+        <div style="width: 24px; height: 24px; border-radius: 50%; background: #7a1f38; border: 1px solid rgba(255,255,255,0.12);"></div>
+        <div style="width: 24px; height: 24px; border-radius: 50%; background: #c8a96b; border: 1px solid rgba(255,255,255,0.12);"></div>
+      </div>
+    </div>
+  </nav>
 
-        <div class="card hero-visual">
-          <div class="visual-block">
-            <div class="logo-preview">
-              <div class="symbol">🎬</div>
-              <div>
-                <div class="logo-text">ROSE ROOM</div>
-                <div style="color: var(--gold); letter-spacing: 0.18em; text-transform: uppercase; font-size: 0.78rem; margin-top: 4px;">Productions Inc.</div>
-              </div>
-            </div>
-            <p style="margin: 16px 0 0; color: var(--muted);">
-              A dark, premium identity with rose, gold, and cinematic cues crafted for a distinguished production brand.
-            </p>
-          </div>
+  <main class="container">
+    <section class="hero">
+      <h1>Visual Portfolio</h1>
+      <p class="lead">A curated selection of luxury cinematic imagery, professional production stills, and dramatic lighting concepts from the Rose Room archive.</p>
+    </section>
 
-          <div class="visual-block">
-            <div>
-              <div class="tag">Brand Palette</div>
-              <p style="margin: 0; color: var(--muted);">Black, deep rose, and gold accents for a timeless studio-level presence.</p>
-            </div>
-            <div style="display: flex; gap: 10px; margin-top: 18px;">
-              <div style="width: 56px; height: 56px; border-radius: 16px; background: #0b0a0d; border: 1px solid rgba(255,255,255,0.12);"></div>
-              <div style="width: 56px; height: 56px; border-radius: 16px; background: #7a1f38; border: 1px solid rgba(255,255,255,0.12);"></div>
-              <div style="width: 56px; height: 56px; border-radius: 16px; background: #c8a96b; border: 1px solid rgba(255,255,255,0.12);"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+        <section class="gallery-grid">
+      
+            <div class="gallery-item">
+        <img src="image_1.png" alt="Rose Room Cinema Camera on Track">
+        <div class="overlay">
+          <span>Production Tech</span>
+          <h3>Tracking The Scene</h3>
+        </div>
+      </div>
 
-    <section id="about">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <h2>About the brand</h2>
-            <p>
-              This website direction is built around sophisticated still-image presentation for a company operating in the motion picture and video space. The positioning is elegant, visual, and premium, with emphasis on logo concepts, brand atmosphere, poster styling, and studio-inspired imagery.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+            <div class="gallery-item">
+        <img src="image_2.png" alt="Rose Room Luxury Cinema Interior">
+        <div class="overlay">
+          <span>Environment Design</span>
+          <h3>The Rose Screening Room</h3>
+        </div>
+      </div>
 
-    <section id="services">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <h2>Creative focus</h2>
-            <p>Luxury-focused visual concepts designed for image generation, brand identity presentation, and cinematic company positioning.</p>
-          </div>
-        </div>
-        <div class="services">
-          <article class="card service">
-            <h3>Logo Direction</h3>
-            <p>Elegant rose symbols, film reels, cinema references, and premium dark palettes translated into professional visual identity concepts.</p>
-          </article>
-          <article class="card service">
-            <h3>Branding Atmosphere</h3>
-            <p>High-end moodboards, studio aesthetics, dark luxury color systems, and polished presentation for a strong production-house image.</p>
-          </article>
-          <article class="card service">
-            <h3>Still Image Concepts</h3>
-            <p>Professional prompts crafted specifically for image generation, including posters, studio visuals, sound environments, and production scenes.</p>
-          </article>
-        </div>
-      </div>
-    </section>
+            <div class="gallery-item">
+        <img src="image_3.png" alt="Rose Room Symbol: Rose and Film Reel">
+        <div class="overlay">
+          <span>Brand Visuals</span>
+          <h3>Legacy Symbol</h3>
+        </div>
+      </div>
 
-    <section id="prompts">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <h2>Featured image prompts</h2>
-            <p>These prompts are written for image generation only and follow the luxury cinematic direction discussed for this domain.</p>
-          </div>
-        </div>
-        <div class="prompts-grid">
-          <article class="card prompt-card">
-            <div class="tag">Logo Prompt</div>
-            <h3>ROSE ROOM PRODUCTIONS INC. — logo concept</h3>
-            <pre>luxury logo for "ROSE ROOM PRODUCTIONS INC.", elegant rose combined with film reel and cinema camera, black background, gold and dark red colors, minimal, cinematic, high detail, 4k, professional branding</pre>
-          </article>
+            <div class="gallery-item">
+        <img src="image_4.png" alt="Rose Room Sound Studio Mixer">
+        <div class="overlay">
+          <span>Post Production</span>
+          <h3>Audio Precision</h3>
+        </div>
+      </div>
 
-          <article class="card prompt-card">
-            <div class="tag">Branding Prompt</div>
-            <h3>Cinematic brand identity mood</h3>
-            <pre>cinematic brand identity, black, dark red and gold color palette, rose aesthetic, film production theme, luxury creative studio moodboard, dramatic lighting, ultra realistic, 4k</pre>
-          </article>
+            <div class="gallery-item">
+        <img src="image_5.png" alt="Dramatic Silhouette on Film Set">
+        <div class="overlay">
+          <span>Lighting Concept</span>
+          <h3>Noir Spotlight</h3>
+        </div>
+      </div>
 
-          <article class="card prompt-card">
-            <div class="tag">Production Scene</div>
-            <h3>Professional film set image</h3>
-            <pre>professional film production set, camera crew filming scene, cinematic lighting, dark atmosphere with red accents, high-end cinema camera, ultra realistic, depth of field, 4k</pre>
-          </article>
+            <div class="gallery-item">
+        <img src="image_6.png" alt="Rose Room Large Set Lighting">
+        <div class="overlay">
+          <span>Scale & Scope</span>
+          <h3>Cinematic Illumination</h3>
+        </div>
+      </div>
 
-          <article class="card prompt-card">
-            <div class="tag">Poster Prompt</div>
-            <h3>Luxury cinematic poster</h3>
-            <pre>cinematic movie poster for "ROSE ROOM PRODUCTIONS INC.", dark background, red rose theme, dramatic lighting, luxury Hollywood style, elegant typography, film grain, ultra realistic, 4k</pre>
-          </article>
+    </section>
+  </main>
 
-          <article class="card prompt-card">
-            <div class="tag">Sound Studio</div>
-            <h3>Recording environment still image</h3>
-            <pre>professional sound recording studio, microphone, mixing console, dark ambient lighting with red tones, cinematic atmosphere, ultra realistic, 4k</pre>
-          </article>
+  <footer>
+    <div class="container">
+      <p style="color:var(--gold); letter-spacing:2px; text-transform:uppercase;">Rose Room Productions Inc.</p>
+      <p style="font-size:0.8rem; color:var(--muted);">© 2026 Crafted for Cinematic Vision. All Rights Reserved.</p>
+    </div>
+  </footer>
 
-          <article class="card prompt-card">
-            <div class="tag">Style Notes</div>
-            <h3>Preferred visual language</h3>
-            <pre>Use luxury, cinematic, elegant, black background, gold accents, dark red tones, dramatic lighting, premium branding, ultra realistic, professional studio aesthetic.</pre>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="container contact-grid">
-        <div class="card info-card">
-          <div class="section-head" style="margin-bottom: 10px;">
-            <div>
-              <h2>Contact details</h2>
-              <p>Official company information provided for the website layout.</p>
-            </div>
-          </div>
-          <div class="info-list">
-            <div class="info-row">
-              <small>Company Name</small>
-              <div>ROSE ROOM PRODUCTIONS INC.</div>
-            </div>
-            <div class="info-row">
-              <small>Email</small>
-              <div><a href="mailto:contact@roseroomproductionsinc.com">contact@roseroomproductionsinc.com</a></div>
-            </div>
-            <div class="info-row">
-              <small>Phone Number</small>
-              <div><a href="tel:+12792590713">+1 279 259 0713</a></div>
-            </div>
-            <div class="info-row">
-              <small>Address</small>
-              <div>Longview Ave Kissimmee, FL, 34747-5037 United States</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card contact-card">
-          <div class="section-head" style="margin-bottom: 6px;">
-            <div>
-              <h2>Send a message</h2>
-              <p>A polished contact form section for your HTML layout.</p>
-            </div>
-          </div>
-          <form onsubmit="event.preventDefault(); document.getElementById('form-note').textContent='Message captured in this demo layout.';">
-            <input type="text" placeholder="Your name" aria-label="Your name" />
-            <input type="email" placeholder="Your email" aria-label="Your email" />
-            <input type="text" placeholder="Subject" aria-label="Subject" />
-            <textarea placeholder="Tell us about your project" aria-label="Tell us about your project"></textarea>
-            <button class="btn btn-primary" type="submit">Submit Inquiry</button>
-            <div id="form-note" style="color: var(--muted); font-size: 0.95rem;"></div>
-          </form>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <div class="card footer-box">
-        <div>
-          <strong style="display:block; color: var(--text);">ROSE ROOM PRODUCTIONS INC.</strong>
-          <span>Luxury cinematic branding and image prompt presentation.</span>
-        </div>
-        <div>© 2026 Rose Room Productions Inc. All rights reserved.</div>
-      </div>
-    </div>
-  </footer>
 </body>
 </html>
