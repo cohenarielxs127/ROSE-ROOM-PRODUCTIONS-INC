@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROSE ROOM | Creative Production House</title>
+    <title>ROSE ROOM | Motion Picture & Sound Recording</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --gold: #d4af37;
-            --deep-red: #4a0e0e;
             --black: #050505;
             --gray: #1a1a1a;
+            --light-gray: #2a2a2a;
             --text: #ffffff;
             --font-serif: 'Cormorant Garamond', serif;
             --font-sans: 'Montserrat', sans-serif;
@@ -36,31 +36,34 @@
             height: 100vh; width: 100%; position: relative;
             display: flex; align-items: center; justify-content: center; overflow: hidden;
         }
-
         .hero-video-bg {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             object-fit: cover; filter: brightness(0.3) saturate(0.8); z-index: -1;
         }
-
         .hero-content { text-align: center; max-width: 900px; padding: 20px; animation: fadeInUp 1.5s ease; }
         .hero-content h1 { font-family: var(--font-serif); font-size: clamp(3rem, 10vw, 7rem); line-height: 0.9; margin-bottom: 20px; font-style: italic; }
         .hero-content p { font-weight: 200; letter-spacing: 8px; text-transform: uppercase; font-size: 0.8rem; color: var(--gold); }
+
+        /* --- New Section: Services --- */
+        .services { padding: 100px 6%; background: #080808; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; margin-top: 60px; }
+        .service-card { padding: 40px; border: 1px solid var(--gray); transition: 0.4s; }
+        .service-card:hover { border-color: var(--gold); background: var(--gray); }
+        .service-card h3 { font-family: var(--font-serif); font-size: 1.8rem; color: var(--gold); margin-bottom: 15px; }
+        .service-card p { font-size: 0.85rem; line-height: 1.8; color: #aaa; }
 
         /* --- Work --- */
         .work { padding: 100px 6%; }
         .work-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 60px; }
         .work-header h2 { font-family: var(--font-serif); font-size: 3rem; }
-
         .portfolio-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; }
         .item { position: relative; overflow: hidden; border-radius: 4px; transition: 0.6s cubic-bezier(0.2, 1, 0.3, 1); background: var(--gray); }
         .item img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: 0.8s; }
         .item:hover img { filter: grayscale(0%); transform: scale(1.05); }
-
         .item-1 { grid-column: span 8; height: 500px; }
         .item-2 { grid-column: span 4; height: 500px; }
         .item-3 { grid-column: span 4; height: 600px; }
         .item-4 { grid-column: span 8; height: 600px; }
-
         .item-info {
             position: absolute; bottom: 0; left: 0; width: 100%; padding: 40px;
             background: linear-gradient(transparent, rgba(0,0,0,0.9));
@@ -69,7 +72,14 @@
         .item:hover .item-info { transform: translateY(0); opacity: 1; }
         .item-info h4 { font-family: var(--font-serif); font-size: 1.8rem; color: var(--gold); }
 
-        /* --- Contact Section --- */
+        /* --- New Section: Sound Recording Studio --- */
+        .sound-section { padding: 100px 6%; background: linear-gradient(to right, #050505, #111); display: flex; align-items: center; gap: 50px; flex-wrap: wrap; }
+        .sound-text { flex: 1; min-width: 300px; }
+        .sound-text h2 { font-family: var(--font-serif); font-size: 3rem; margin-bottom: 20px; }
+        .sound-img { flex: 1; min-width: 300px; height: 400px; border-radius: 4px; overflow: hidden; }
+        .sound-img img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* --- Contact --- */
         .contact-section { padding: 100px 6%; background: #080808; border-top: 1px solid var(--gray); }
         .contact-container { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
         .contact-info h3 { font-family: var(--font-serif); font-size: 2.5rem; margin-bottom: 30px; color: var(--gold); }
@@ -79,20 +89,12 @@
         .info-value a { color: var(--text); text-decoration: none; transition: 0.3s; }
         .info-value a:hover { color: var(--gold); }
 
-        /* --- Footer --- */
-        footer {
-            padding: 80px 6% 40px; text-align: center; background: var(--black);
-            border-top: 1px solid var(--gray);
-        }
-        .footer-logo { font-family: var(--font-serif); font-size: 2rem; color: var(--gold); margin-bottom: 20px; }
-        .copyright { font-size: 0.65rem; letter-spacing: 2px; color: #555; margin-top: 40px; text-transform: uppercase; }
-
         .btn-gold {
             display: inline-block; padding: 18px 45px; border: 1px solid var(--gold); 
             color: var(--gold); text-decoration: none; text-transform: uppercase; 
             letter-spacing: 4px; font-size: 0.75rem; transition: 0.4s;
         }
-        .btn-gold:hover { background: var(--gold); color: black; box-shadow: 0 0 20px rgba(212, 175, 55, 0.2); }
+        .btn-gold:hover { background: var(--gold); color: black; }
 
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
@@ -113,74 +115,100 @@
     </header>
 
     <section class="hero">
-        <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=2000" class="hero-video-bg" alt="Hero Background">
+        <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&q=80&w=2000" class="hero-video-bg" alt="Cinema Background">
         <div class="hero-content">
             <p>ROSE ROOM PRODUCTIONS INC.</p>
-            <h1>Defining the Art of Cinema.</h1>
+            <h1>Motion Picture & Sound Excellence.</h1>
         </div>
     </section>
 
-    <section class="work" id="work">
-        <div class="work-header">
-            <h2>Selected Works</h2>
-            <p style="color: var(--gold);">/ 2024-2026</p>
+    <section class="services">
+        <h2 style="font-family: var(--font-serif); font-size: 3rem; text-align: center;">Production Services</h2>
+        <div class="grid-3">
+            <div class="service-card">
+                <h3>Cinematography</h3>
+                <p>High-end digital cinematography using industry-standard 8K cameras and anamorphic lenses for a true film look.</p>
+            </div>
+            <div class="service-card">
+                <h3>Sound Recording</h3>
+                <p>Professional foley, ADR, and spatial audio mixing for immersive soundscapes in our Florida-based studios.</p>
+            </div>
+            <div class="service-card">
+                <h3>Visual Effects</h3>
+                <p>Seamless CGI integration and color grading to bring the most ambitious visual visions to life.</p>
+            </div>
         </div>
+    </section>
 
+    <section class="work">
+        <div class="work-header">
+            <h2>Featured Productions</h2>
+            <p style="color: var(--gold);">/ LATEST RELEASES</p>
+        </div>
         <div class="portfolio-grid">
             <div class="item item-1">
-                <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&q=80&w=1200" alt="Cinematography">
-                <div class="item-info">
-                    <h4>The Velvet Night</h4>
-                </div>
+                <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=1200" alt="Cinematography">
+                <div class="item-info"><h4>The Velvet Night</h4></div>
             </div>
             <div class="item item-2">
-                <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&q=80&w=1200" alt="Direction">
-                <div class="item-info">
-                    <h4>Motion Story</h4>
-                </div>
+                <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&q=80&w=1200" alt="Direction">
+                <div class="item-info"><h4>Motion Story</h4></div>
             </div>
             <div class="item item-3">
-                <img src="https://images.unsplash.com/photo-1512213012282-75cae8018bbd?auto=format&fit=crop&q=80&w=1200" alt="Post Production">
+                <img src="https://images.unsplash.com/photo-1581390129939-2468d9d0a68d?auto=format&fit=crop&q=80&w=1200" alt="Post Production Golden Frames">
                 <div class="item-info">
+                    <p class="tag" style="font-size: 0.7rem; letter-spacing: 2px;">POST-PROD</p>
                     <h4>Golden Frames</h4>
                 </div>
             </div>
             <div class="item item-4">
                 <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1200" alt="Interiors">
-                <div class="item-info">
-                    <h4>Royal Settings</h4>
-                </div>
+                <div class="item-info"><h4>Royal Settings</h4></div>
             </div>
+        </div>
+    </section>
+
+    <section class="sound-section">
+        <div class="sound-text">
+            <h2>Acoustically Perfect.</h2>
+            <p style="font-weight: 300; line-height: 1.8; color: #ccc; margin-bottom: 30px;">
+                Our sound recording facilities are designed for the most demanding motion picture scores and sound design. From Dolby Atmos mixing to crystal clear voice recording, we capture the soul of the performance.
+            </p>
+            <a href="mailto:contact@roseroomproductionsinc.com" class="btn-gold" style="padding: 12px 30px; font-size: 0.6rem;">Book Studio</a>
+        </div>
+        <div class="sound-img">
+            <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&q=80&w=1000" alt="Sound Studio">
         </div>
     </section>
 
     <section class="contact-section">
         <div class="contact-container">
             <div class="contact-info">
-                <h3>Get in Touch</h3>
+                <h3>Contact Studio</h3>
                 <div class="info-block">
-                    <div class="info-label">Email</div>
+                    <div class="info-label">Corporate Email</div>
                     <div class="info-value"><a href="mailto:contact@roseroomproductionsinc.com">contact@roseroomproductionsinc.com</a></div>
                 </div>
                 <div class="info-block">
-                    <div class="info-label">Phone</div>
+                    <div class="info-label">Direct Line</div>
                     <div class="info-value"><a href="tel:+12792590713">+1 279 259 0713</a></div>
                 </div>
                 <div class="info-block">
-                    <div class="info-label">Headquarters</div>
+                    <div class="info-label">Studio Address</div>
                     <div class="info-value">Longview Ave Kissimmee, FL, 34747-5037<br>United States</div>
                 </div>
             </div>
             <div style="text-align: right; align-self: center;">
-                <a href="mailto:contact@roseroomproductionsinc.com" class="btn-gold">Inquire Now</a>
+                <p style="font-style: italic; margin-bottom: 20px; opacity: 0.6;">Available for international commissions.</p>
+                <a href="mailto:contact@roseroomproductionsinc.com" class="btn-gold">Start a Project</a>
             </div>
         </div>
     </section>
 
-    <footer>
-        <div class="footer-logo">ROSE ROOM</div>
-        <p style="letter-spacing: 5px; font-size: 0.7rem; text-transform: uppercase; color: var(--gold);">Productions Inc.</p>
-        <p class="copyright">© 2026 ROSE ROOM PRODUCTIONS INC. — ALL RIGHTS RESERVED</p>
+    <footer style="padding: 60px 6% 30px; text-align: center; background: #000;">
+        <div class="logo" style="font-size: 2.2rem; margin-bottom: 15px;">ROSE ROOM</div>
+        <p style="letter-spacing: 5px; font-size: 0.6rem; text-transform: uppercase; color: var(--gold); margin-bottom: 40px;">Motion Picture and Sound Recording Industries</p>
+        <p style="font-size: 0.65rem; letter-spacing: 2px; color: #444; text-transform: uppercase;">© 2026 ROSE ROOM PRODUCTIONS INC. — FLORIDA, USA</p>
     </footer>
 
 </body>
