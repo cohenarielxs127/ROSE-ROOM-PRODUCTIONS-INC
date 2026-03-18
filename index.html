@@ -1,191 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rose Room Productions Inc. | Visual Portfolio</title>
-  <style>
-    :root {
-      --bg: #0b0a0d;
-      --panel: rgba(255,255,255,0.05);
-      --text: #f5f1f2;
-      --muted: #c6bcc0;
-      --line: rgba(255,255,255,0.12);
-      --gold: #c8a96b;
-      --rose: #7a1f38;
-      --radius: 24px;
-      --max: 1180px;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROSE ROOM | Creative Production House</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #d4af37;
+            --deep-red: #4a0e0e;
+            --black: #050505;
+            --gray: #1a1a1a;
+            --text: #ffffff;
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'Montserrat', sans-serif;
+        }
 
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: #0b0a0d;
-      color: var(--text);
-      line-height: 1.6;
-    }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--black); color: var(--text); font-family: var(--font-sans); overflow-x: hidden; }
 
-    .container { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+        /* --- Global Scrollbar --- */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: var(--black); }
+        ::-webkit-scrollbar-thumb { background: var(--gold); }
 
-    /* Navigation */
-    .nav {
-      position: sticky; top: 0; z-index: 100;
-      backdrop-filter: blur(14px);
-      background: rgba(11,10,13,0.8);
-      border-bottom: 1px solid var(--line);
-    }
-    .nav-inner { display: flex; justify-content: space-between; align-items: center; min-height: 80px; }
-    .brand { font-weight: 700; letter-spacing: 2px; display: flex; align-items: center; gap: 10px; text-transform: uppercase; }
+        /* --- Header --- */
+        header {
+            position: fixed; width: 100%; top: 0; padding: 40px 6%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; transition: 0.5s;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+        }
 
-    /* Hero Section */
-    .hero { padding: 100px 0 60px; text-align: center; }
-    h1 { font-family: Georgia, serif; font-size: clamp(2.5rem, 6vw, 4.5rem); margin-bottom: 20px; color: var(--text); }
-    .lead { color: var(--muted); max-width: 700px; margin: 0 auto 40px; font-size: 1.1rem; }
+        .logo { font-family: var(--font-serif); font-size: 1.8rem; font-weight: 700; letter-spacing: 3px; color: var(--gold); }
 
-    /* Portfolio Gallery - ZED TSAWER MEN 3NDEK */
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-      gap: 25px;
-      margin-top: 50px;
-    }
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh; width: 100%; position: relative;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden;
+        }
 
-    .gallery-item {
-      position: relative;
-      border-radius: var(--radius);
-      overflow: hidden;
-      background: var(--panel);
-      border: 1px solid var(--line);
-      aspect-ratio: 16/10;
-      transition: transform 0.4s ease, border-color 0.4s ease;
-    }
+        .hero-video-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover; filter: brightness(0.4) saturate(0.8);
+            z-index: -1;
+        }
 
-    .gallery-item:hover {
-      transform: translateY(-10px);
-      border-color: var(--gold);
-    }
+        .hero-content { text-align: center; max-width: 900px; padding: 20px; animation: fadeInUp 1.5s ease; }
+        .hero-content h1 { font-family: var(--font-serif); font-size: clamp(3rem, 10vw, 7rem); line-height: 0.9; margin-bottom: 20px; font-style: italic; }
+        .hero-content p { font-weight: 200; letter-spacing: 8px; text-transform: uppercase; font-size: 0.9rem; color: var(--gold); }
 
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: grayscale(20%) brightness(80%);
-      transition: filter 0.5s ease, transform 0.5s ease;
-    }
+        /* --- Portfolio Grid --- */
+        .work { padding: 120px 6%; }
+        .work-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 60px; }
+        .work-header h2 { font-family: var(--font-serif); font-size: 3.5rem; }
 
-    .gallery-item:hover img {
-      filter: grayscale(0%) brightness(100%);
-      transform: scale(1.05);
-    }
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 20px;
+        }
 
-    .overlay {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      padding: 25px;
-      background: linear-gradient(transparent, rgba(0,0,0,0.9));
-    }
+        .item { position: relative; overflow: hidden; border-radius: 4px; transition: 0.6s cubic-bezier(0.2, 1, 0.3, 1); }
+        .item img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: 0.8s; }
+        .item:hover img { filter: grayscale(0%); transform: scale(1.08); }
 
-    .overlay span {
-      color: var(--gold);
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-    }
+        /* Masonry Style */
+        .item-1 { grid-column: span 8; height: 500px; }
+        .item-2 { grid-column: span 4; height: 500px; }
+        .item-3 { grid-column: span 4; height: 600px; }
+        .item-4 { grid-column: span 8; height: 600px; }
 
-    .overlay h3 { margin: 5px 0 0; font-family: Georgia, serif; font-size: 1.3rem; color: var(--text); }
+        .item-info {
+            position: absolute; bottom: 0; left: 0; width: 100%; padding: 40px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            transform: translateY(20px); opacity: 0; transition: 0.4s;
+        }
+        .item:hover .item-info { transform: translateY(0); opacity: 1; }
+        .item-info h4 { font-family: var(--font-serif); font-size: 2rem; color: var(--gold); }
 
-    /* Footer */
-    footer { padding: 60px 0; border-top: 1px solid var(--line); margin-top: 80px; text-align: center; }
-    
-    @media (max-width: 768px) {
-      .gallery-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+        /* --- Footer Section --- */
+        .cta { height: 60vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #0a0a0a; }
+        .btn-gold {
+            padding: 20px 60px; border: 1px solid var(--gold); color: var(--gold);
+            text-decoration: none; text-transform: uppercase; letter-spacing: 4px;
+            font-size: 0.8rem; transition: 0.4s; margin-top: 40px;
+        }
+        .btn-gold:hover { background: var(--gold); color: black; box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 900px) {
+            .item-1, .item-2, .item-3, .item-4 { grid-column: span 12; height: 400px; }
+        }
+    </style>
 </head>
 <body>
 
-  <nav class="nav">
-    <div class="container nav-inner">
-      <div class="brand">🌹 ROSE ROOM PRODUCTIONS INC.</div>
-      <div style="display:flex; gap:20px; color:var(--muted); font-size:0.9rem;">
-        <span>About</span>
-        <span>Work</span>
-        <span>Studio</span>
-      </div>
-      <div style="display:flex; gap:10px;">
-        <div style="width: 24px; height: 24px; border-radius: 50%; background: #0b0a0d; border: 1px solid rgba(255,255,255,0.12);"></div>
-        <div style="width: 24px; height: 24px; border-radius: 50%; background: #7a1f38; border: 1px solid rgba(255,255,255,0.12);"></div>
-        <div style="width: 24px; height: 24px; border-radius: 50%; background: #c8a96b; border: 1px solid rgba(255,255,255,0.12);"></div>
-      </div>
-    </div>
-  </nav>
+    <header>
+        <div class="logo">ROSE ROOM</div>
+        <div style="letter-spacing: 3px; font-size: 0.7rem; font-weight: 600;">MENU</div>
+    </header>
 
-  <main class="container">
-    <section class="hero">
-      <h1>Visual Portfolio</h1>
-      <p class="lead">A curated selection of luxury cinematic imagery, professional production stills, and dramatic lighting concepts from the Rose Room archive.</p>
-    </section>
+    <section class="hero">
+        <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=2000" class="hero-video-bg" alt="Hero Background">
+        
+        <div class="hero-content">
+            <p>Productions Inc.</p>
+            <h1>Defining the Art of Cinema.</h1>
+        </div>
+    </section>
 
-        <section class="gallery-grid">
-      
-            <div class="gallery-item">
-        <img src="image_1.png" alt="Rose Room Cinema Camera on Track">
-        <div class="overlay">
-          <span>Production Tech</span>
-          <h3>Tracking The Scene</h3>
-        </div>
-      </div>
+    <section class="work">
+        <div class="work-header">
+            <h2>Selected Works</h2>
+            <p style="color: var(--gold);">/ 2024-2026</p>
+        </div>
 
-            <div class="gallery-item">
-        <img src="image_2.png" alt="Rose Room Luxury Cinema Interior">
-        <div class="overlay">
-          <span>Environment Design</span>
-          <h3>The Rose Screening Room</h3>
-        </div>
-      </div>
+        <div class="portfolio-grid">
+            <div class="item item-1">
+                <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&q=80&w=1200" alt="Cinematography">
+                <div class="item-info">
+                    <p class="tag">Cinematography</p>
+                    <h4>The Velvet Night</h4>
+                </div>
+            </div>
 
-            <div class="gallery-item">
-        <img src="image_3.png" alt="Rose Room Symbol: Rose and Film Reel">
-        <div class="overlay">
-          <span>Brand Visuals</span>
-          <h3>Legacy Symbol</h3>
-        </div>
-      </div>
+            <div class="item item-2">
+                <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&q=80&w=1200" alt="Direction">
+                <div class="item-info">
+                    <p class="tag">Direction</p>
+                    <h4>Motion Story</h4>
+                </div>
+            </div>
 
-            <div class="gallery-item">
-        <img src="image_4.png" alt="Rose Room Sound Studio Mixer">
-        <div class="overlay">
-          <span>Post Production</span>
-          <h3>Audio Precision</h3>
-        </div>
-      </div>
+            <div class="item item-3">
+                <img src="https://images.unsplash.com/photo-1512213012282-75cae8018bbd?auto=format&fit=crop&q=80&w=1200" alt="Post Production">
+                <div class="item-info">
+                    <p class="tag">Post-Prod</p>
+                    <h4>Golden Frames</h4>
+                </div>
+            </div>
 
-            <div class="gallery-item">
-        <img src="image_5.png" alt="Dramatic Silhouette on Film Set">
-        <div class="overlay">
-          <span>Lighting Concept</span>
-          <h3>Noir Spotlight</h3>
-        </div>
-      </div>
+            <div class="item item-4">
+                <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1200" alt="Interiors">
+                <div class="item-info">
+                    <p class="tag">Environment</p>
+                    <h4>Royal Settings</h4>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            <div class="gallery-item">
-        <img src="image_6.png" alt="Rose Room Large Set Lighting">
-        <div class="overlay">
-          <span>Scale & Scope</span>
-          <h3>Cinematic Illumination</h3>
-        </div>
-      </div>
+    <section class="cta">
+        <h2 style="font-family: var(--font-serif); font-size: 3rem; font-style: italic;">Start Your Project</h2>
+        <a href="#" class="btn-gold">Contact Studio</a>
+    </section>
 
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <p style="color:var(--gold); letter-spacing:2px; text-transform:uppercase;">Rose Room Productions Inc.</p>
-      <p style="font-size:0.8rem; color:var(--muted);">© 2026 Crafted for Cinematic Vision. All Rights Reserved.</p>
-    </div>
-  </footer>
+    <footer style="padding: 40px; text-align: center; font-size: 0.7rem; letter-spacing: 2px; border-top: 1px solid #1a1a1a;">
+        © 2026 ROSE ROOM PRODUCTIONS INC. — CASABLANCA / FLORIDA
+    </footer>
 
 </body>
 </html>
