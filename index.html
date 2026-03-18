@@ -16,7 +16,6 @@
             --font-sans: 'Montserrat', sans-serif;
         }
 
-        /* --- Hide default cursor to use custom one --- */
         * { margin: 0; padding: 0; box-sizing: border-box; cursor: none !important; }
         
         body { background: var(--black); color: var(--text); font-family: var(--font-sans); overflow-x: hidden; scroll-behavior: smooth; }
@@ -89,6 +88,12 @@
         .item-4 { grid-column: span 8; height: 600px; }
 
         .sound-section { padding: 100px 6%; background: linear-gradient(to right, #050505, #111); display: flex; align-items: center; gap: 50px; flex-wrap: wrap; }
+        
+        /* --- Support Section --- */
+        .support-section { padding: 80px 6%; background: #050505; text-align: center; border-top: 1px solid var(--gray); }
+        .support-url { font-family: var(--font-serif); font-size: 1.2rem; color: var(--gold); text-decoration: none; letter-spacing: 2px; transition: 0.3s; opacity: 0.8; }
+        .support-url:hover { opacity: 1; letter-spacing: 4px; }
+
         .contact-section { padding: 100px 6%; background: #080808; border-top: 1px solid var(--gray); }
         .btn-gold { display: inline-block; padding: 18px 45px; border: 1px solid var(--gold); color: var(--gold); text-decoration: none; text-transform: uppercase; letter-spacing: 4px; font-size: 0.75rem; transition: 0.4s; }
         .btn-gold:hover { background: var(--gold); color: black; }
@@ -113,6 +118,7 @@
             <div class="menu-link-wrapper"><a href="#services" onclick="toggleMenu()">Services</a></div>
             <div class="menu-link-wrapper"><a href="#work" onclick="toggleMenu()">Productions</a></div>
             <div class="menu-link-wrapper"><a href="#sound" onclick="toggleMenu()">Studio</a></div>
+            <div class="menu-link-wrapper"><a href="#support" onclick="toggleMenu()">Support</a></div>
             <div class="menu-link-wrapper"><a href="#contact" onclick="toggleMenu()">Contact</a></div>
         </div>
     </div>
@@ -184,22 +190,28 @@
         </div>
     </section>
 
+    <section class="support-section reveal" id="support">
+        <h4 style="font-size: 0.7rem; letter-spacing: 5px; margin-bottom: 15px; opacity: 0.5;">TECHNICAL SUPPORT</h4>
+        <a href="https://roseroomproductionsinc.com/support" class="support-url">roseroomproductionsinc.com/support</a>
+    </section>
+
+    <footer style="padding: 40px 6%; text-align: center; font-size: 0.7rem; opacity: 0.3; letter-spacing: 2px;">
+        © 2026 ROSE ROOM PRODUCTIONS INC. FLORIDA, USA
+    </footer>
+
     <script>
-        // 1. Cursor Logic
         const cursor = document.getElementById('custom-cursor');
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
         });
 
-        // Add hover effect for links/buttons
         const interactiveElements = document.querySelectorAll('a, .menu-toggle, .service-card, .item');
         interactiveElements.forEach(el => {
             el.addEventListener('mouseenter', () => cursor.classList.add('cursor-grow'));
             el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-grow'));
         });
 
-        // 2. Scroll Animation Logic
         function reveal() {
             const reveals = document.querySelectorAll(".reveal");
             for (let i = 0; i < reveals.length; i++) {
@@ -213,7 +225,6 @@
         }
         window.addEventListener("scroll", reveal);
 
-        // Menu Toggle
         function toggleMenu() {
             const menu = document.getElementById('menuOverlay');
             menu.classList.toggle('active');
