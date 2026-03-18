@@ -26,7 +26,7 @@
         }
         .hovering #cursor { width: 50px; height: 50px; background: rgba(212, 175, 55, 0.1); }
 
-        /* --- Scroll Animation Classes --- */
+        /* --- Scroll Animation --- */
         .reveal { opacity: 0; transform: translateY(50px); transition: all 1s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
@@ -58,8 +58,10 @@
 
         /* --- Hero with Video --- */
         .hero { height: 100vh; width: 100%; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-        .video-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
-        .hero-video { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.4); }
+        .video-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover; z-index: -1; filter: brightness(0.4);
+        }
         .hero-content { text-align: center; max-width: 900px; padding: 20px; }
         .hero-content h1 { font-family: var(--font-serif); font-size: clamp(3rem, 10vw, 7rem); line-height: 0.9; margin-bottom: 20px; font-style: italic; }
         .hero-content p { font-weight: 200; letter-spacing: 8px; text-transform: uppercase; font-size: 0.8rem; color: var(--gold); }
@@ -69,7 +71,7 @@
         .service-card { padding: 40px; border: 1px solid var(--gray); transition: 0.4s; }
         .service-card:hover { border-color: var(--gold); background: var(--gray); }
 
-        .portfolio-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; padding: 0 6%; }
+        .portfolio-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; padding: 0 6%; margin-bottom: 100px; }
         .item { position: relative; overflow: hidden; border-radius: 4px; background: var(--gray); }
         .item img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: 0.8s; }
         .item:hover img { filter: grayscale(0%); transform: scale(1.05); }
@@ -80,6 +82,8 @@
 
         .btn-gold { display: inline-block; padding: 18px 45px; border: 1px solid var(--gold); color: var(--gold); text-decoration: none; text-transform: uppercase; letter-spacing: 4px; font-size: 0.75rem; transition: 0.4s; }
         .btn-gold:hover { background: var(--gold); color: black; }
+
+        footer { padding: 80px 6%; text-align: center; border-top: 1px solid var(--gray); }
     </style>
 </head>
 <body onmousemove="moveCursor(event)">
@@ -103,11 +107,9 @@
     </div>
 
     <section class="hero">
-        <div class="video-container">
-            <video autoplay muted loop playsinline class="hero-video">
-                <source src="https://assets.mixkit.co/videos/preview/mixkit-cinematographer-filming-with-a-professional-camera-34545-large.mp4" type="video/mp4">
-            </video>
-        </div>
+        <video class="video-bg" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&q=80&w=2000">
+            <source src="https://player.vimeo.com/external/370371975.sd.mp4?s=330746978103c80a2730626354179e8e49e2954a&profile_id=139&oauth2_token_id=57447761" type="video/mp4">
+        </video>
         <div class="hero-content">
             <p>ROSE ROOM PRODUCTIONS INC.</p>
             <h1>Motion Picture & Sound Excellence.</h1>
@@ -115,24 +117,24 @@
     </section>
 
     <section class="services reveal" id="services">
-        <h2 style="font-family: var(--font-serif); font-size: 3rem; text-align: center;">Production Services</h2>
+        <h2 style="font-family: var(--font-serif); font-size: 3rem; text-align: center; margin-bottom: 20px;">Production Services</h2>
         <div class="grid-3">
             <div class="service-card" onmouseenter="hoverIn()" onmouseleave="hoverOut()">
                 <h3 style="color: var(--gold); margin-bottom: 15px;">Cinematography</h3>
-                <p style="color: #aaa; font-size: 0.85rem;">High-end digital cinematography using industry-standard 8K cameras.</p>
+                <p style="color: #aaa; font-size: 0.85rem; line-height: 1.6;">High-end digital cinematography using industry-standard 8K cameras and anamorphic lenses.</p>
             </div>
             <div class="service-card" onmouseenter="hoverIn()" onmouseleave="hoverOut()">
                 <h3 style="color: var(--gold); margin-bottom: 15px;">Sound Recording</h3>
-                <p style="color: #aaa; font-size: 0.85rem;">Professional foley, ADR, and spatial audio mixing.</p>
+                <p style="color: #aaa; font-size: 0.85rem; line-height: 1.6;">Professional foley, ADR, and spatial audio mixing for immersive soundscapes.</p>
             </div>
             <div class="service-card" onmouseenter="hoverIn()" onmouseleave="hoverOut()">
                 <h3 style="color: var(--gold); margin-bottom: 15px;">Visual Effects</h3>
-                <p style="color: #aaa; font-size: 0.85rem;">Seamless CGI integration and color grading.</p>
+                <p style="color: #aaa; font-size: 0.85rem; line-height: 1.6;">Seamless CGI integration and professional color grading for a cinematic finish.</p>
             </div>
         </div>
     </section>
 
-    <section class="work reveal" id="work" style="padding: 100px 0;">
+    <section class="work reveal" id="work">
         <div class="portfolio-grid">
             <div class="item item-1" onmouseenter="hoverIn()" onmouseleave="hoverOut()"><img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=1200"></div>
             <div class="item item-2" onmouseenter="hoverIn()" onmouseleave="hoverOut()"><img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&q=80&w=1200"></div>
@@ -141,21 +143,15 @@
         </div>
     </section>
 
-    <section class="contact-section reveal" id="contact" style="padding: 100px 6%; background: #080808;">
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px;">
-            <div>
-                <h3 style="font-family: var(--font-serif); font-size: 2.5rem; color: var(--gold);">Start Your Project</h3>
-                <p style="margin-top: 20px;">contact@roseroomproductionsinc.com</p>
-                <p>+1 279 259 0713</p>
-            </div>
-            <div style="text-align: right; align-self: center;">
-                <a href="mailto:contact@roseroomproductionsinc.com" class="btn-gold" onmouseenter="hoverIn()" onmouseleave="hoverOut()">Email Us</a>
-            </div>
-        </div>
-    </section>
+    <footer class="reveal" id="contact">
+        <h3 style="font-family: var(--font-serif); font-size: 2.5rem; color: var(--gold); margin-bottom: 20px;">Ready to create?</h3>
+        <p style="margin-bottom: 40px; opacity: 0.7;">contact@roseroomproductionsinc.com | +1 279 259 0713</p>
+        <a href="mailto:contact@roseroomproductionsinc.com" class="btn-gold" onmouseenter="hoverIn()" onmouseleave="hoverOut()">Start a Project</a>
+        <p style="margin-top: 60px; font-size: 0.7rem; letter-spacing: 2px; opacity: 0.4;">© 2026 ROSE ROOM PRODUCTIONS INC. FLORIDA, USA</p>
+    </footer>
 
     <script>
-        // Cursor Logic
+        // Cursor Movement
         const cursor = document.getElementById('cursor');
         function moveCursor(e) {
             cursor.style.left = e.clientX + 'px';
@@ -172,20 +168,19 @@
             btn.innerHTML = menu.classList.contains('active') ? 'CLOSE' : 'MENU';
         }
 
-        // Scroll Reveal Logic
+        // Scroll Reveal
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 150;
-                if (elementTop < windowHeight - elementVisible) {
+                if (elementTop < windowHeight - 100) {
                     reveals[i].classList.add("active");
                 }
             }
         }
         window.addEventListener("scroll", reveal);
-        reveal(); // Run once on load
+        reveal();
     </script>
 
 </body>
